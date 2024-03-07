@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:weather_app/features/weather/domain/model/weather.dart';
+import 'package:weather_app/features/weather/data/dto/weather_dto.dart';
 import 'package:weather_app/secrets.dart';
 
 class InvalidRequestException implements Exception {}
@@ -10,7 +10,7 @@ class InvalidRequestException implements Exception {}
 class NoInternetException implements Exception {}
 
 abstract interface class WeatherRemoteDataSource {
-  Future<WeatherInfo> fetchWeather({
+  Future<WeatherInfoDto> fetchWeather({
     required double lat,
     required double lon,
   });
@@ -18,7 +18,7 @@ abstract interface class WeatherRemoteDataSource {
 
 class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
   @override
-  Future<WeatherInfo> fetchWeather({
+  Future<WeatherInfoDto> fetchWeather({
     required double lat,
     required double lon,
   }) async {
@@ -35,7 +35,7 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
       final response = await http.get(weatherApiUrl);
       if (response.statusCode == 200) {
         final result = jsonDecode(response.body) as Map<String, dynamic>;
-        return WeatherInfo.fromJson(result);
+        return WeatherInfoDto.fromJson(result);
       } else {
         throw InvalidRequestException();
       }

@@ -1,25 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'weather.dart';
+part of 'weather_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherInfo _$WeatherInfoFromJson(Map<String, dynamic> json) => WeatherInfo(
+WeatherInfoDto _$WeatherInfoDtoFromJson(Map<String, dynamic> json) =>
+    WeatherInfoDto(
       weather: (json['weather'] as List<dynamic>)
-          .map((e) => Weather.fromJson(e as Map<String, dynamic>))
+          .map((e) => WeatherDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      main: TemperatureInfo.fromJson(json['main'] as Map<String, dynamic>),
+      main: TemperatureInfoDto.fromJson(json['main'] as Map<String, dynamic>),
     );
 
-Weather _$WeatherFromJson(Map<String, dynamic> json) => Weather(
+WeatherDto _$WeatherDtoFromJson(Map<String, dynamic> json) => WeatherDto(
       main: json['main'] as String,
       description: json['description'] as String,
     );
 
-TemperatureInfo _$TemperatureInfoFromJson(Map<String, dynamic> json) =>
-    TemperatureInfo(
+TemperatureInfoDto _$TemperatureInfoDtoFromJson(Map<String, dynamic> json) =>
+    TemperatureInfoDto(
       temp: (json['temp'] as num).toDouble(),
       feelsLike: (json['feels_like'] as num).toDouble(),
     );
