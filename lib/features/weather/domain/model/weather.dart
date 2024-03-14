@@ -10,7 +10,7 @@ class WeatherInfo extends Equatable {
   final TemperatureInfo main;
 
   @override
-  List<Object> get props => [weather, main];
+  List<Object?> get props => [weather, main];
 }
 
 class Weather extends Equatable {
@@ -36,5 +36,5 @@ class TemperatureInfo extends Equatable {
   final double feelsLike;
 
   @override
-  List<Object> get props => [temp, feelsLike];
+  List<Object?> get props => [temp, feelsLike];
 }
