@@ -8,10 +8,11 @@ part of 'weather_dto.dart';
 
 WeatherInfoDto _$WeatherInfoDtoFromJson(Map<String, dynamic> json) =>
     WeatherInfoDto(
-      weather: (json['weather'] as List<dynamic>)
+      weatherDto: (json['weather'] as List<dynamic>)
           .map((e) => WeatherDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      main: TemperatureInfoDto.fromJson(json['main'] as Map<String, dynamic>),
+      mainDto:
+          TemperatureInfoDto.fromJson(json['main'] as Map<String, dynamic>),
     );
 
 WeatherDto _$WeatherDtoFromJson(Map<String, dynamic> json) => WeatherDto(

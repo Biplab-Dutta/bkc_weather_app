@@ -1,58 +1,56 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:weather_app/features/weather/domain/model/weather.dart';
 
 part 'weather_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true, createToJson: false)
-class WeatherInfoDto extends Equatable {
+class WeatherInfoDto extends WeatherInfo with EquatableMixin {
   const WeatherInfoDto({
-    required this.weather,
-    required this.main,
-  });
+    required this.weatherDto,
+    required this.mainDto,
+  }) : super(weather: weatherDto, main: mainDto);
 
-  final List<WeatherDto> weather;
-  final TemperatureInfoDto main;
+  @JsonKey(name: 'weather')
+  final List<WeatherDto> weatherDto;
+
+  @JsonKey(name: 'main')
+  final TemperatureInfoDto mainDto;
 
   factory WeatherInfoDto.fromJson(Map<String, dynamic> json) {
     return _$WeatherInfoDtoFromJson(json);
   }
 
   @override
-  List<Object> get props => [weather, main];
+  List<Object?> get props => [super.props];
 }
 
 @JsonSerializable(createToJson: false)
-class WeatherDto extends Equatable {
+class WeatherDto extends Weather with EquatableMixin {
   const WeatherDto({
-    required this.main,
-    required this.description,
+    required super.main,
+    required super.description,
   });
-
-  final String main;
-  final String description;
 
   factory WeatherDto.fromJson(Map<String, dynamic> json) {
     return _$WeatherDtoFromJson(json);
   }
 
   @override
-  List<Object?> get props => [main, description];
+  List<Object?> get props => [super.props];
 }
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
-class TemperatureInfoDto extends Equatable {
+class TemperatureInfoDto extends TemperatureInfo with EquatableMixin {
   const TemperatureInfoDto({
-    required this.temp,
-    required this.feelsLike,
+    required super.temp,
+    required super.feelsLike,
   });
-
-  final double temp;
-  final double feelsLike;
 
   factory TemperatureInfoDto.fromJson(Map<String, dynamic> json) {
     return _$TemperatureInfoDtoFromJson(json);
   }
 
   @override
-  List<Object> get props => [temp, feelsLike];
+  List<Object?> get props => [super.props];
 }
